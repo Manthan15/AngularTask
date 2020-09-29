@@ -1,0 +1,32 @@
+  <body class="container">
+  <div class="table100 ver3 m-b-110">
+  <input class="search-name" type="text" name="search" [(ngModel)]="searchText" autocomplete="off" placeholder="Start searching for a post by username or id">
+ <button type="submit" *ngIf="searchText" class="clear-btn" (click)="searchText=''">Clear</button>
+  <table>
+  <thead>
+    <tr class="row100 head">
+      <th scope="col">User Name</th>
+      <th scope="col">Post Id</th>
+      <th scope="col">Post Name</th>
+      <th scope="col">Post Description</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr *ngFor="let post of allPosts | filter:searchText | paginate: { itemsPerPage: 5, currentPage: p } " class="row100 body">
+      <td data-label="Username :- " class="cell100 column2">{{post.userId}}</td>
+      <td data-label="Post Id :- " class="cell100 column3">{{post.id}}</td>
+      <td data-label="Post Name :- " class="cell100 column4">{{post.title}}</td>
+      <td data-label="Post Description :- " class="cell100 column5">{{post.body}}</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="pagination">
+  <pagination-controls (pageChange)="p = $event"></pagination-controls>
+</div>
+
+</div> 
+</body>
+
+
